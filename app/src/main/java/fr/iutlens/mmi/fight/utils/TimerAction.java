@@ -5,5 +5,5 @@ package fr.iutlens.mmi.fight.utils;
  */
 
 public interface TimerAction {
-    public void update();
+    void update();
 }
