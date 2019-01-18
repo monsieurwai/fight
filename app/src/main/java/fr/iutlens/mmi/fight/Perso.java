@@ -14,20 +14,14 @@ class Perso extends Sprite {
     public static final int SPEED = 10;
     private final List<Sprite> laser;
     private final int dxLaser;
-    private final int dyLaser;
-    int vx = 0;
 
     Perso(int id, float x, float y, List<Sprite> laser) {
         super(id, x, y);
         this.laser = laser;
-        final SpriteSheet laserSprite = SpriteSheet.get(R.mipmap.bullet);
-
         dxLaser = sprite.w;
-        dyLaser = (sprite.h-laserSprite.h)/2;
     }
 
     public void fire() {
-        laser.add(new Sprite(R.mipmap.bullet,x+dxLaser,y+dyLaser, SPEED, 0));
-
+        laser.add(new Sprite(R.mipmap.bullet,x+dxLaser,y, SPEED, 0));
     }
 }

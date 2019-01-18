@@ -14,7 +14,7 @@ class Projectile extends Sprite {
     }
 
     @Override
-    public boolean act() {
+    public boolean act(boolean out) {
         y += vy;
         frame++;
         if (sprite.n>1) state = (frame/3)%sprite.n;

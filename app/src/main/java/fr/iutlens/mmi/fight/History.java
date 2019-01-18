@@ -84,38 +84,19 @@ public class History {
 
         for(Sprite s : perso.values()){
             if (s != persoA && s != persoB)
-                s.act();
+                s.act(false);
         }
-        persoA.act();
-        persoB.act();
+        persoA.act(false);
+        persoB.act(false);
 
         frame++;
         if (frame == FRAME_PER_ROUND) prepareRound();
     }
 
-    public void moveA(float speed, float direction, float x, float y) {
-        if(x > 0 && x < GameView.SIZE_X && y > 0 && y < GameView.SIZE_Y){
-            final MoveCommand command = new MoveCommand(frame, "A" + round, speed, direction);
-            registerCommand(command);
-            command.apply(this);
-        }
-        else{
-            while(x<=0){
-                x++;
-            }
-            while(x>=GameView.SIZE_X){
-                x--;
-            }
-            while(y<=0){
-                y++;
-            }
-            while(y>=GameView.SIZE_Y){
-                y--;
-            }
-            final MoveToCommand command = new MoveToCommand(frame, "A" + round, x, y);
-            registerCommand(command);
-            command.apply(this);
-        }
+    public void moveA(float speed, float direction) {
+        final MoveCommand command = new MoveCommand(frame, "A" + round, speed, direction);
+        registerCommand(command);
+        command.apply(this);
     }
 
     public void fireA() {
