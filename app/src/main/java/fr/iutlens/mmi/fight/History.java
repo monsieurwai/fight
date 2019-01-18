@@ -12,11 +12,11 @@ import java.util.Map;
  * Created by dubois on 09/01/2019.
  */
 
-class History {
+public class History {
     public static final int FRAME_PER_ROUND = 500;
     private final List<Sprite> laserA;
     private final List<Sprite> laserB;
-    private  Perso persoA,persoB;
+    public Perso persoA,persoB;
     private final ArrayList<Command> commandList;
     private long frame;
     private int round;
@@ -93,10 +93,29 @@ class History {
         if (frame == FRAME_PER_ROUND) prepareRound();
     }
 
-    public void moveA(float speed, float direction) {
-        final MoveCommand command = new MoveCommand(frame, "A" + round, speed, direction);
-        registerCommand(command);
-        command.apply(this);
+    public void moveA(float speed, float direction, float x, float y) {
+        if(x > 0 && x < GameView.SIZE_X && y > 0 && y < GameView.SIZE_Y){
+            final MoveCommand command = new MoveCommand(frame, "A" + round, speed, direction);
+            registerCommand(command);
+            command.apply(this);
+        }
+        else{
+            while(x<=0){
+                x++;
+            }
+            while(x>=GameView.SIZE_X){
+                x--;
+            }
+            while(y<=0){
+                y++;
+            }
+            while(y>=GameView.SIZE_Y){
+                y--;
+            }
+            final MoveToCommand command = new MoveToCommand(frame, "A" + round, x, y);
+            registerCommand(command);
+            command.apply(this);
+        }
     }
 
     public void fireA() {

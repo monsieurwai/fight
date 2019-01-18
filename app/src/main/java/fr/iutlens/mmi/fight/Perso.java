@@ -11,7 +11,7 @@ import fr.iutlens.mmi.fight.utils.SpriteSheet;
  */
 
 class Perso extends Sprite {
-    public static final int SPEED = 12;
+    public static final int SPEED = 10;
     private final List<Sprite> laser;
     private final int dxLaser;
     private final int dyLaser;
@@ -27,7 +27,7 @@ class Perso extends Sprite {
     }
 
     public void fire() {
-        laser.add(new Sprite(R.mipmap.bullet,x+dxLaser,y+dyLaser, 20, 0));
+        laser.add(new Sprite(R.mipmap.bullet,x+dxLaser,y+dyLaser, SPEED, 0));
 
     }
 }

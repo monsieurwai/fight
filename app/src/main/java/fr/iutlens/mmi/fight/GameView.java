@@ -101,7 +101,7 @@ public class GameView extends View implements TimerAction {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!timer.isRunning()) timer.scheduleRefresh(30);
+                if (!timer.isRunning()) timer.scheduleRefresh(16);
             }
         });
     }
@@ -121,16 +121,21 @@ public class GameView extends View implements TimerAction {
 
 
             if (pad != null){
-                history.moveA((float) pad.getLength()*5, -(float) Math.toDegrees(pad.getAngle()));
+                history.moveA((float) pad.getLength()*5, -(float) Math.toDegrees(pad.getAngle()), history.persoA.x, history.persoA.y);
                 if (fire) history.fireA();
 
                 fire = false;
             }
 
             history.act();
-
             act(laserA);
             act(laserB);
+
+            for(int i=0; i < laserA.size(); i++) {
+                if(laserA.get(i).x > GameView.SIZE_X || laserA.get(i).x < 0){
+                    laserA.remove(i);
+                }
+            }
 
             invalidate(); // demande à rafraichir la vue
         }
