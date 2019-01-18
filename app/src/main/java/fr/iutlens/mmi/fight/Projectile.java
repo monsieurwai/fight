@@ -14,10 +14,10 @@ class Projectile extends Sprite {
     }
 
     @Override
-    public boolean act() {
+    public boolean act(boolean out) {
         y += vy;
         frame++;
         if (sprite.n>1) state = (frame/3)%sprite.n;
-        return y < 0 || y> GameView.SIZE_Y || hit;
+        return y < 0 || y> GameView.SIZE_X || hit;
     }
 }

@@ -12,11 +12,11 @@ import java.util.Map;
  * Created by dubois on 09/01/2019.
  */
 
-class History {
+public class History {
     public static final int FRAME_PER_ROUND = 500;
     private final List<Sprite> laserA;
     private final List<Sprite> laserB;
-    private  Perso persoA,persoB;
+    public Perso persoA,persoB;
     private final ArrayList<Command> commandList;
     private long frame;
     private int round;
@@ -84,10 +84,10 @@ class History {
 
         for(Sprite s : perso.values()){
             if (s != persoA && s != persoB)
-                s.act();
+                s.act(false);
         }
-        persoA.act();
-        persoB.act();
+        persoA.act(false);
+        persoB.act(false);
 
         frame++;
         if (frame == FRAME_PER_ROUND) prepareRound();
