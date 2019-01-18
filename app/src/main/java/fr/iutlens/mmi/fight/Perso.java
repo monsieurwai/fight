@@ -22,6 +22,6 @@ class Perso extends Sprite {
     }
 
     public void fire() {
-        laser.add(new Sprite(R.mipmap.bullet,x+dxLaser,y, SPEED, 0));
+        laser.add(new Sprite(R.mipmap.bullet,x-sprite.w/2+dxLaser,y+sprite.h/2, SPEED, 0));
     }
 }

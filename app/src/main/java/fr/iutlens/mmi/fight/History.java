@@ -62,11 +62,11 @@ public class History {
     }
 
     private void createPersoA() {
-        perso.put("A"+round, new Perso(round == 0 ? R.mipmap.spritepersoblue : R.mipmap.spritefantomeblue,50, 200,laserA));
+        perso.put("A"+round, new Perso(round == 0 ? R.mipmap.spritepersoblue : R.mipmap.spritefantomeblue,GameView.SIZE_X/4, (GameView.SIZE_Y/2)-32,laserA));
     }
 
     private void createPersoB() {
-        perso.put("B"+round, new Perso(round == 0 ? R.mipmap.spritepersored : R.mipmap.spritefantomered,900, 300,laserB));
+        perso.put("B"+round, new Perso(round == 0 ? R.mipmap.spritepersored : R.mipmap.spritefantomered,3*GameView.SIZE_X/4, (GameView.SIZE_Y/2)-32,laserB));
     }
 
 
