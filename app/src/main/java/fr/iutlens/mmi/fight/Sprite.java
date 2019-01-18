@@ -47,9 +47,19 @@ import fr.iutlens.mmi.fight.utils.SpriteSheet;
     }
 
 
-    public boolean act(){
-        x += vx;
-        y += vy;
+    public boolean act(boolean out){
+        if(out) {
+            x += vx;
+            y += vy;
+        }
+        else {
+            if(x + vx >= 0 && x + vx + sprite.w <= GameView.SIZE_X){
+                x += vx;
+            }
+            if(y + vy >= 0 && y + vy + sprite.h <= GameView.SIZE_Y) {
+                y += vy;
+            }
+        }
         return hit;
     }
 

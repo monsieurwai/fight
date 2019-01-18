@@ -21,8 +21,8 @@ public class GameView extends View implements TimerAction {
     private RefreshHandler timer;
 
     // taille de l'écran virtuel
-    public final static int SIZE_X = 1000;
-    public final static int SIZE_Y = 517;
+    public final static int SIZE_X = 822;
+    public final static int SIZE_Y = 414;
 
     // transformation (et son inverse)
     private Matrix transform;
@@ -61,13 +61,6 @@ public class GameView extends View implements TimerAction {
      * @param defStyle
      */
     private void init(AttributeSet attrs, int defStyle) {
-
-        // Chargement des feuilles de sprites
-        SpriteSheet.register(R.mipmap.alien,2,1,this.getContext());
-        SpriteSheet.register(R.mipmap.missile,4,1,this.getContext());
-        SpriteSheet.register(R.mipmap.laser,1,1,this.getContext());
-        SpriteSheet.register(R.mipmap.canon,1,1,this.getContext());
-
         SpriteSheet.register(R.mipmap.spritepersoblue,4,4,this.getContext());
         SpriteSheet.register(R.mipmap.spritepersored,4,4,this.getContext());
         SpriteSheet.register(R.mipmap.spritefantomeblue,4,4,this.getContext());
@@ -101,7 +94,7 @@ public class GameView extends View implements TimerAction {
         this.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!timer.isRunning()) timer.scheduleRefresh(30);
+                if (!timer.isRunning()) timer.scheduleRefresh(16);
             }
         });
     }
@@ -109,7 +102,7 @@ public class GameView extends View implements TimerAction {
 
     public static void act(List list){
         Iterator it = list.iterator();
-        while (it.hasNext()) if (((Sprite) it.next()).act()) it.remove();
+        while (it.hasNext()) if (((Sprite) it.next()).act(true)) it.remove();
     }
     /**
      * Mise à jour (faite toutes les 30 ms)
@@ -128,9 +121,14 @@ public class GameView extends View implements TimerAction {
             }
 
             history.act();
-
             act(laserA);
             act(laserB);
+
+            for(int i=0; i < laserA.size(); i++) {
+                if(laserA.get(i).x > GameView.SIZE_X || laserA.get(i).x < 0){
+                    laserA.remove(i);
+                }
+            }
 
             invalidate(); // demande à rafraichir la vue
         }
